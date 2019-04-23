@@ -3,6 +3,7 @@
 	"displayName": "Clique Header",
 	"description": "Create file header based on information in package.json",
 	"version": "0.0.1",
+	"license": "BSD-3-Clause",
 	"engines": {
 		"vscode": "^1.33.0"
 	},
