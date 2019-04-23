@@ -15,6 +15,79 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": [
+			{
+				"title": "Clique Header",
+				"properties": {
+					"clique.commentOpen": {
+						"type": "string",
+						"default": "//",
+						"description": "Character(s) to open file header.",
+						"scope": "window"
+					},
+					"clique.commentClose": {
+						"type": "string",
+						"default": "//",
+						"description": "Character(s) to close file header.",
+						"scope": "window"
+					},
+					"clique.commentBody": {
+						"type": "string",
+						"default": "//",
+						"description": "Character(s) to start each line in file header body.",
+						"scope": "window"
+					},
+					"clique.initialSpaces": {
+						"type": "number",
+						"default": 1,
+						"description": "Number of empty spaces after start of comment body.",
+						"scope": "window"
+					},
+					"clique.includeCopyright": {
+						"type": "boolean",
+						"default": false,
+						"description": "Include copyright message?",
+						"scope": "window"
+					},
+					"clique.longLicense": {
+						"type": "boolean",
+						"default": false,
+						"description": "Use long license text? Applies only when documentation tags aren't used.",
+						"scope": "window"
+					},
+					"clique.useTags": {
+						"type": "boolean",
+						"default": false,
+						"description": "Use documentation tags?",
+						"scope": "window"
+					},
+					"clique.tagAuthor": {
+						"type": "string",
+						"default": "@author",
+						"description": "Docmentation tag to be used for author name",
+						"scope": "window"
+					},
+					"clique.tagProject": {
+						"type": "string",
+						"default": "@project",
+						"description": "Docmentation tag to be used for project name",
+						"scope": "window"
+					},
+					"clique.tagLicense": {
+						"type": "string",
+						"default": "@license",
+						"description": "Docmentation tag to be used for license name",
+						"scope": "window"
+					},
+					"clique.textCopyright": {
+						"type": "string",
+						"default": "Copyright (c) %YYYY%. %AUTHOR%.",
+						"description": "Copyright text to be used, if enabled.",
+						"scope": "window"
+					}
+				}
+			}
+		],
 		"commands": [
 			{
 				"command": "extension.cliqueFH",
