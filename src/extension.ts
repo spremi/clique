@@ -77,7 +77,7 @@ function getHeaderTemplate(cfg: IExtensionCfg, license: string, eol: string): st
 
 	tpl = HeaderTemplate.Open.concat([]);
 
-	if (!cfg.copy || !cfg.license || !cfg.tags) {
+	if (!cfg.copy || !cfg.license || !cfg.license.custom ||!cfg.tags) {
 		return;
 	}
 
@@ -90,10 +90,18 @@ function getHeaderTemplate(cfg: IExtensionCfg, license: string, eol: string): st
 			.concat(HeaderTemplate.Author);
 
 		if (license === OtherTokens.Unlicensed) {
-			if (cfg.license.useLong) {
-				tpl = tpl.concat(HeaderTemplate.NoLicenseText);
-			} else {
-				tpl = tpl.concat(HeaderTemplate.NoLicense);
+			if (cfg.license.custom.use) {
+				if (cfg.license.useLong) {
+					tpl = tpl.concat(HeaderTemplate.CustomLicenseText);
+				} else {
+					tpl = tpl.concat(HeaderTemplate.License);
+				}
+		} else {
+				if (cfg.license.useLong) {
+					tpl = tpl.concat(HeaderTemplate.NoLicenseText);
+				} else {
+					tpl = tpl.concat(HeaderTemplate.NoLicense);
+				}
 			}
 		} else {
 			if (cfg.license.useLong) {
@@ -119,7 +127,7 @@ function getHeaderTemplate(cfg: IExtensionCfg, license: string, eol: string): st
 function getHeaderText(tpl: string, cfg: IExtensionCfg, pkg: IPackageInfo): string | undefined {
 	let header = tpl;
 
-	if (!cfg.comment || !cfg.copy || !cfg.tags) {
+	if (!cfg.comment || !cfg.copy || !cfg.license || !cfg.license.custom || !cfg.tags) {
 		return;
 	}
 
@@ -155,7 +163,24 @@ function getHeaderText(tpl: string, cfg: IExtensionCfg, pkg: IPackageInfo): stri
 
 	header = header.replace(REGEX_PROJECT, pkg.project);
 	header = header.replace(REGEX_AUTHOR, pkg.author);
-	header = header.replace(REGEX_LICENSE, pkg.license);
+
+	if (cfg.tags.use) {
+		if ((pkg.license === OtherTokens.Unlicensed) && cfg.license.custom.use) {
+			header = header.replace(REGEX_LICENSE, cfg.license.custom.id);
+		} else {
+			header = header.replace(REGEX_LICENSE, pkg.license);
+		}
+	} else {
+		if ((pkg.license === OtherTokens.Unlicensed) && cfg.license.custom.use) {
+			if (cfg.license.useLong) {
+				header = header.replace(REGEX_LICENSE, cfg.license.custom.text);
+			} else {
+				header = header.replace(REGEX_LICENSE, cfg.license.custom.id);
+			}
+		} else {
+			header = header.replace(REGEX_LICENSE, pkg.license);
+		}
+	}
 
 	header = header.replace(REGEX_INIT_SPACES, spaceStr(cfg.comment.initSpaces));
 
