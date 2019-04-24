@@ -106,6 +106,14 @@ export class HeaderTemplate {
 	];
 
 	/**
+	 * Custom license text.
+	 */
+	public static readonly CustomLicenseText: string[] = [
+		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.License}`,
+		`${HeaderTokens.Body}`,
+	];
+
+	/**
 	 * Copyright text in the header.
 	 */
 	public static readonly Copy: string[] = [
