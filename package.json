@@ -84,6 +84,24 @@
 						"default": "Copyright (c) %YYYY%. %AUTHOR%.",
 						"description": "Copyright text to be used, if enabled.",
 						"scope": "window"
+					},
+					"clique.customLicense": {
+						"type": "boolean",
+						"default": false,
+						"description": "Use custom license information? Applies only when no license is specified in package.json.",
+						"scope": "window"
+					},
+					"clique.customLicenseId": {
+						"type": "string",
+						"default": "CUSTOM",
+						"description": "Short identifier for custom license.",
+						"scope": "window"
+					},
+					"clique.customLicenseText": {
+						"type": "string",
+						"default": "Licensed under CUSTOM terms described in the file LICENSE.TXT.",
+						"description": "One line text for custom license.",
+						"scope": "window"
 					}
 				}
 			}
