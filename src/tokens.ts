@@ -51,3 +51,10 @@ export class ConfigTokens {
 	public static readonly IncludeCopyright = 'includeCopyright';
 	public static readonly TextCopyright = 'textCopyright';
 }
+
+/**
+ * Defines other tokens.
+ */
+export class OtherTokens {
+	public static readonly Unlicensed = 'UNLICENSED';
+}
