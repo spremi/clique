@@ -59,11 +59,25 @@ export interface ICopyCfg {
 }
 
 /**
+ * Describes extension configuration related to custom license.
+ */
+export interface ICustomLicenseCfg {
+	/** Use custom license? */
+	use: boolean;
+	/** Short identifier. */
+	id: string;
+	/** Long license text. */
+	text: string;
+}
+
+/**
  * Describes extension configuration related to license text.
  */
 export interface ILicenseCfg {
 	/** Use longish license text? */
 	useLong: boolean;
+	/** Custom license information. */
+	custom: ICustomLicenseCfg | undefined;
 }
 
 /**

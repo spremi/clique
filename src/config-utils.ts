@@ -61,6 +61,7 @@ export function getExtensionCfg(config: vscode.WorkspaceConfiguration): IExtensi
 
 	cfg.license = {
 		useLong: getBool(config, ConfigTokens.LongLicense),
+		custom: undefined,
 	};
 
 	cfg.copy = {
