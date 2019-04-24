@@ -31,3 +31,23 @@ export class HeaderTokens {
 
 	public static readonly Year = '%YYYY%';
 }
+
+/**
+ * Defines tokens used in extension configuration.
+ */
+export class ConfigTokens {
+	public static readonly CommentOpen = 'commentOpen';
+	public static readonly CommentBody = 'commentBody';
+	public static readonly CommentClose = 'commentClose';
+	public static readonly InitialSpaces = 'initialSpaces';
+
+	public static readonly UseTags = 'useTags';
+	public static readonly TagProject = 'tagProject';
+	public static readonly TagAuthor = 'tagAuthor';
+	public static readonly TagLicense = 'tagLicense';
+
+	public static readonly LongLicense = 'longLicense';
+
+	public static readonly IncludeCopyright = 'includeCopyright';
+	public static readonly TextCopyright = 'textCopyright';
+}
