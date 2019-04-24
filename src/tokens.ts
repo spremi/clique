@@ -50,6 +50,10 @@ export class ConfigTokens {
 
 	public static readonly IncludeCopyright = 'includeCopyright';
 	public static readonly TextCopyright = 'textCopyright';
+
+	public static readonly CustomLicense = 'customLicense';
+	public static readonly CustomLicenseId = 'customLicenseId';
+	public static readonly CustomLicenseText = 'customLicenseText';
 }
 
 /**
