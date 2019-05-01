@@ -74,12 +74,26 @@ export function getPackageInfo(): IPackageInfo | undefined {
 		return;
 	}
 
-	if (pkgJson.hasOwnProperty('author')) {
-		if (pkgJson.author.hasOwnProperty('name') && pkgJson.author.name) {
-			author = pkgJson.author.name;
 
-			if (pkgJson.author.hasOwnProperty('email') && pkgJson.author.email) {
-				author += ' <' + pkgJson.author.email + '>';
+	if (pkgJson.hasOwnProperty('author')) {
+		if (typeof pkgJson.author === 'string' && pkgJson.author) {
+			//
+			// Remove URL, if it exists.
+			//
+			const REGEX_EMAIL_URL = new RegExp('(.*?)\\s*<(.*?)>\\s*\\((.*?)\\)\\s*$');
+			const match = pkgJson.author.match(REGEX_EMAIL_URL);
+			if (match) {
+				author = match[1] + ' <' + match[2] + '>';
+			} else {
+				author = pkgJson.author;
+			}
+		} else {
+			if (pkgJson.author.hasOwnProperty('name') && pkgJson.author.name) {
+				author = pkgJson.author.name;
+
+				if (pkgJson.author.hasOwnProperty('email') && pkgJson.author.email) {
+					author += ' <' + pkgJson.author.email + '>';
+				}
 			}
 		}
 	} else {
