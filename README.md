@@ -8,6 +8,7 @@ This extension adds file header based on project information in `package.json`.
 * Include custom copyright text, if enabled.
   * Useful in corporate environments.
 * Custom characters for opening & closing the comment characters.
+* Use custom licence identifier & text, if enabled.
 
 ## Requirements
 
@@ -30,6 +31,10 @@ This extension contributes the following settings:
 * `clique.textCopyright`: Copyright text to be used, if enabled.
 * `clique.longLicense`: Use long license text?
   * Applies only when documentation tags aren't used.
+* `clique.customLicense`: Use custom license information?
+  * Applies only when no license is specified in package.json.
+* `clique.customLicenseId`: Short identifier for custom license.
+* `clique.customLicenseText`: One line text for custom license.
 
 ### Examples
 
@@ -107,6 +112,33 @@ to `//`, `clique.longLicense` selected but no license specified in `package.json
 // UNLICENSED - No license specified.
 //
 ```
+#### 5
+With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
+to `//`, `clique.longLicense` selected but no license specified in `package.json`:
+
+```ts
+//
+// [my-project]
+//
+// Smart Developer (smart.developer@work.home)
+//
+// UNLICENSED - No license specified.
+//
+```
+#### 6
+With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
+to `//`, `clique.longLicense` selected,  no license specified in `package.json`,
+`clique.customLicense` selected:
+
+```ts
+//
+// [my-project]
+//
+// Smart Developer (smart.developer@work.home)
+//
+// Licensed under CUSTOM terms described in the file LICENSE.TXT.
+//
+```
 
 ## Known Issues
 
@@ -120,7 +152,6 @@ to `//`, `clique.longLicense` selected but no license specified in `package.json
 
 * Include URL to SPDX licenses.
 * Wrap license in custom text - when documentation tags aren't used.
-* Custom license text, when no license is specified in `package.json`.
 
 ## Release Notes
 
