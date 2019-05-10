@@ -2,3 +2,16 @@ out
 node_modules
 .vscode-test/
 *.vsix
+
+#
+# Patch & Diff files
+#
+*.diff
+*.patch
+*.orig
+*.rej
+
+#
+# Specifically, don't ignore these files
+#
+!.gitignore
