@@ -13,6 +13,14 @@
 	"engines": {
 		"vscode": "^1.33.0"
 	},
+	"keywords": [
+		"header",
+		"file-header",
+		"SPDX",
+		"copyright",
+		"license",
+		"copyright"
+	],
 	"categories": [
 		"Other"
 	],
