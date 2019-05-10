@@ -1,7 +1,7 @@
 {
 	"name": "clique-header",
 	"displayName": "Clique Header",
-	"description": "Create file header based on information in package.json",
+	"description": "Create file header with/ without documentation tags based on information in package.json.",
 	"version": "0.0.1",
 	"license": "BSD-3-Clause",
 	"publisher": "spremi",
