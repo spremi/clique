@@ -6,6 +6,11 @@
 	"license": "BSD-3-Clause",
 	"publisher": "spremi",
 	"icon": "assets/clique.png",
+	"author": {
+		"name": "Sanjeev Premi",
+		"email": "spremi@ymail.com",
+		"url": "https://github.com/spremi"
+	},
 	"repository": {
 		"type" : "git",
 		"url" : "https://github.com/spremi/clique"
