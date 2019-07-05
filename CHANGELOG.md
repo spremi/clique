@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.0.4] - 2019-07-06
+### Changed
+- Markdown formatting in README. No code change.
+
 ## [0.0.3] - 2019-07-06
 ### Added
 - Key binding
