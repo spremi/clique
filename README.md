@@ -15,32 +15,41 @@ This extension adds file header based on project information in `package.json`.
 The workspace must contain `package.json` based on specification
 [here](https://docs.npmjs.com/files/package.json).
 
+## Shortcut key
+
+With cursor in text editor, press: **``Alt + Shift + Q``**.
+
 ## Extension Settings
 
 This extension contributes the following settings:
 
-* `clique.commentOpen`: Character(s) to open file header.
-* `clique.commentClose`: Character(s) to close file header.
-* `clique.commentBody`: Character(s) to start each line in file header body.
-* `clique.initialSpaces`: Number of empty spaces after start of comment body.
-* `clique.includeCopyright`: Include copyright message?
-* `clique.useTags`: Use documentation tags?
-* `clique.tagAuthor`: Docmentation tag to be used for author name.
-* `clique.tagProject`: Docmentation tag to be used for project name.
-* `clique.tagLicense`: Docmentation tag to be used for license name.
-* `clique.textCopyright`: Copyright text to be used, if enabled.
-* `clique.longLicense`: Use long license text?
-  * Applies only when documentation tags aren't used.
-* `clique.customLicense`: Use custom license information?
-  * Applies only when no license is specified in package.json.
-* `clique.customLicenseId`: Short identifier for custom license.
-* `clique.customLicenseText`: One line text for custom license.
+| Setting | Description |
+| --- | --- |
+| `clique.commentOpen` | Character(s) to open file header.
+| `clique.commentClose` | Character(s) to close file header.
+| `clique.commentBody` | Character(s) to start each line in file header body. |
+| `clique.initialSpaces` | Number of empty spaces after start of comment body. |
+| `clique.includeCopyright` | Include copyright message? |
+| `clique.useTags` | Use documentation tags? |
+| `clique.tagAuthor` | Docmentation tag to be used for author name. |
+| `clique.tagProject` | Docmentation tag to be used for project name. |
+| `clique.tagLicense` | Docmentation tag to be used for license name. |
+| `clique.textCopyright` | Copyright text to be used, if enabled. |
+| `clique.longLicense` | Use long license text?<br/>_Ignored when documentation tags are used._ |
+| `clique.customLicense` | Use custom license information?<br/>_Applies only when no license is specified in ``package.json``_. |
+| `clique.customLicenseId` | Short identifier for custom license. |
+| `clique.customLicenseText` | One line text for custom license. |
 
-### Examples
+## Examples
 
-#### 1
-With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
-to `//`:
+### Without Docmentation Tags (Option "Use Tags" is not selected)
+
+#### A.1
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
 
 ```ts
 //
@@ -52,9 +61,13 @@ to `//`:
 //
 ```
 
-#### 2
-With `clique.commentOpen`, `clique.commentClose`, `clique.commentBody` set
-to `//` and `clique.longLicense` selected:
+#### A.2
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.longLicense` | Selected |
 
 ```ts
 //
@@ -66,9 +79,12 @@ to `//` and `clique.longLicense` selected:
 //
 ```
 
-#### 3
-With `clique.commentOpen` = `/**`, `clique.commentClose` = ` */` and
-`clique.commentBody` = ` *`:
+#### A.3
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `/**` |
+| `clique.commentBody` | ` *` (Notice a space before asterix) |
+| `clique.commentClose` | ` */` (Notice a space before asterix) |
 
 ```ts
 /**
@@ -79,11 +95,74 @@ With `clique.commentOpen` = `/**`, `clique.commentClose` = ` */` and
  * BSD-3-Clause License
  */
 ```
+#### A.4
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.longLicense` | Selected |
+... but no license specified in `package.json`.
 
-#### 4
-With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
-to `//`, `clique.includeCopyright` selected, custom copyright text specified
-in `clique.textCopyright` but no license specified in `package.json`:
+```ts
+//
+// [my-project]
+//
+// Smart Developer (smart.developer@work.home)
+//
+// UNLICENSED - No license specified.
+//
+```
+
+#### A.5
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.customLicense` | Selected |
+... but no license specified in `package.json`.
+
+```ts
+//
+// [my-project]
+//
+// Smart Developer (smart.developer@work.home)
+//
+// Licensed under CUSTOM terms described in the file LICENSE.TXT.
+//
+```
+
+### With Docmentation Tags (Option "Use Tags" is selected)
+
+#### B.1
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.includeCopyright` | Selected |
+
+```ts
+//
+// @project     my-project
+//
+// @author      Smart Developer (smart.developer@work.home)
+//
+// @license     MIT
+//
+// Copyright (c) 2019. Smart Company Incorporated.
+//
+```
+
+#### B.2
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.includeCopyright` | Selected |
+... and no license specified in `package.json`.
 
 ```ts
 //
@@ -94,49 +173,6 @@ in `clique.textCopyright` but no license specified in `package.json`:
 // @license     UNLICENSED
 //
 // Copyright (c) 2019. Smart Company Incorporated.
-//
-```
-
-When no license is specified in `package.json`, header shows 'UNLICENSED'.
-
-#### 5
-With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
-to `//`, `clique.longLicense` selected but no license specified in `package.json`:
-
-```ts
-//
-// [my-project]
-//
-// Smart Developer (smart.developer@work.home)
-//
-// UNLICENSED - No license specified.
-//
-```
-#### 5
-With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
-to `//`, `clique.longLicense` selected but no license specified in `package.json`:
-
-```ts
-//
-// [my-project]
-//
-// Smart Developer (smart.developer@work.home)
-//
-// UNLICENSED - No license specified.
-//
-```
-#### 6
-With `clique.commentOpen`, `clique.commentClose` and `clique.commentBody` set
-to `//`, `clique.longLicense` selected,  no license specified in `package.json`,
-`clique.customLicense` selected:
-
-```ts
-//
-// [my-project]
-//
-// Smart Developer (smart.developer@work.home)
-//
-// Licensed under CUSTOM terms described in the file LICENSE.TXT.
 //
 ```
 
@@ -154,6 +190,10 @@ to `//`, `clique.longLicense` selected,  no license specified in `package.json`,
 * Wrap license in custom text - when documentation tags aren't used.
 
 ## Release Notes
+
+### 0.0.2
+* Add shortcut key.
+* Update README for better readability.
 
 ### 0.0.1
 Initial release of the extension.
