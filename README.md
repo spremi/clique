@@ -102,6 +102,7 @@ This extension contributes the following settings:
 | `clique.commentBody` | `//` |
 | `clique.commentClose` | `//` |
 | `clique.longLicense` | Selected |
+
 ... but no license specified in `package.json`.
 
 ```ts
@@ -121,6 +122,7 @@ This extension contributes the following settings:
 | `clique.commentBody` | `//` |
 | `clique.commentClose` | `//` |
 | `clique.customLicense` | Selected |
+
 ... but no license specified in `package.json`.
 
 ```ts
@@ -162,6 +164,7 @@ This extension contributes the following settings:
 | `clique.commentBody` | `//` |
 | `clique.commentClose` | `//` |
 | `clique.includeCopyright` | Selected |
+
 ... and no license specified in `package.json`.
 
 ```ts
