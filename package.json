@@ -2,7 +2,7 @@
 	"name": "clique-header",
 	"displayName": "Clique Header",
 	"description": "Create file header with/ without documentation tags based on information in package.json.",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"license": "BSD-3-Clause",
 	"publisher": "spremi",
 	"icon": "assets/clique.png",
