@@ -130,6 +130,13 @@
 				"command": "extension.cliqueFH",
 				"title": "Clique: Insert file header"
 			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.cliqueFH",
+				"key": "alt+shift+Q",
+				"when": "editorTextFocus"
+			}
 		]
 	},
 	"scripts": {
