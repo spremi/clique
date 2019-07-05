@@ -67,7 +67,6 @@ export class HeaderTemplate {
 	 */
 	public static readonly License: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.License} License`,
-		`${HeaderTokens.Body}`,
 	];
 
 	/**
@@ -76,7 +75,6 @@ export class HeaderTemplate {
 	public static readonly LicenseTag: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.TagLicense}` +
 			`${HeaderTokens.Space}${HeaderTokens.License}`,
-		`${HeaderTokens.Body}`,
 	];
 
 	/**
@@ -85,7 +83,6 @@ export class HeaderTemplate {
 	public static readonly LicenseText: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}` +
 			`Available under terms of the ${HeaderTokens.License} license.`,
-		`${HeaderTokens.Body}`,
 	];
 
 	/**
@@ -93,7 +90,6 @@ export class HeaderTemplate {
 	 */
 	public static readonly NoLicense: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${OtherTokens.Unlicensed}`,
-		`${HeaderTokens.Body}`,
 	];
 
 	/**
@@ -102,7 +98,6 @@ export class HeaderTemplate {
 	public static readonly NoLicenseText: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}` +
 			`${OtherTokens.Unlicensed} - No license specified.`,
-		`${HeaderTokens.Body}`,
 	];
 
 	/**
@@ -110,13 +105,13 @@ export class HeaderTemplate {
 	 */
 	public static readonly CustomLicenseText: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.License}`,
-		`${HeaderTokens.Body}`,
 	];
 
 	/**
 	 * Copyright text in the header.
 	 */
 	public static readonly Copy: string[] = [
+		`${HeaderTokens.Body}`,
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.Copyright}`,
 	];
 }
