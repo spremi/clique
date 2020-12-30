@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.0.5] - 2020-12-30
+### Changed
+- Enable extension to be used in workspaces of other languages viz. C/C++,
+Python, etc. using necessary information in `.clique.json`.
+
 ## [0.0.4] - 2019-07-06
 ### Changed
 - Markdown formatting in README. No code change.
