@@ -83,19 +83,19 @@
 					"clique.tagAuthor": {
 						"type": "string",
 						"default": "@author",
-						"description": "Docmentation tag to be used for author name",
+						"description": "Documentation tag to be used for author name",
 						"scope": "window"
 					},
 					"clique.tagProject": {
 						"type": "string",
 						"default": "@project",
-						"description": "Docmentation tag to be used for project name",
+						"description": "Documentation tag to be used for project name",
 						"scope": "window"
 					},
 					"clique.tagLicense": {
 						"type": "string",
 						"default": "@license",
-						"description": "Docmentation tag to be used for license name",
+						"description": "Documentation tag to be used for license name",
 						"scope": "window"
 					},
 					"clique.textCopyright": {
