@@ -2,6 +2,9 @@
 
 This extension adds file header based on project information in `package.json`.
 
+Projects in other languages (e.g. C/C++, Python) are, now, supported via
+`.clique.json`.
+
 ## Features
 
 * Generate headers with / without documentation tags.
@@ -9,11 +12,24 @@ This extension adds file header based on project information in `package.json`.
   * Useful in corporate environments.
 * Custom characters for opening & closing the comment characters.
 * Use custom licence identifier & text, if enabled.
+* Effectively supports all languages.
+  (Tested on C/C++, Python and shell scripts)
+   - Multi-language settings are currently no supported.
+   - Comment styles **must** be adjusted for each language...
+     until next version.
+   - Should be an acceptable limitation unless, you work on multiple
+	   languages with different comment characters.
 
 ## Requirements
 
 The workspace must contain `package.json` based on specification
 [here](https://docs.npmjs.com/files/package.json).
+
+When `package.json` is not _natural_ / _common_ in your workspace,
+create `.clique.json` with necessary - information following the
+same rules.
+
+Of course, **adjust** the comment style - as necessary.
 
 ## Shortcut key
 
@@ -179,6 +195,28 @@ This extension contributes the following settings:
 //
 ```
 
+#### B.3
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `#` |
+| `clique.commentBody` | `#` |
+| `clique.commentClose` | `#` |
+| `clique.includeCopyright` | Selected |
+
+... and project information specified in `.clique.json`.
+
+```python
+#
+# @project      my-project
+#
+# @author       Smart Developer (smart.developer@work.home)
+#
+# @license      BSD-3-Clause
+#
+# Copyright (c) 2020. Smart Company Incorporated.
+#
+```
+
 ## Known Issues
 
 1. The generated header varies with change in extension settings.
@@ -194,12 +232,7 @@ This extension contributes the following settings:
 
 ## Release Notes
 
-### 0.0.2
-* Add shortcut key.
-* Update README for better readability.
-
-### 0.0.1
-Initial release of the extension.
+See [CHANGELOG](https://github.com/spremi/clique/blob/master/CHANGELOG.md)
 
 ## License
 BSD-3-Clause
