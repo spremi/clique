@@ -31,9 +31,9 @@ This extension contributes the following settings:
 | `clique.initialSpaces` | Number of empty spaces after start of comment body. |
 | `clique.includeCopyright` | Include copyright message? |
 | `clique.useTags` | Use documentation tags? |
-| `clique.tagAuthor` | Docmentation tag to be used for author name. |
-| `clique.tagProject` | Docmentation tag to be used for project name. |
-| `clique.tagLicense` | Docmentation tag to be used for license name. |
+| `clique.tagAuthor` | Documentation tag to be used for author name. |
+| `clique.tagProject` | Documentation tag to be used for project name. |
+| `clique.tagLicense` | Documentation tag to be used for license name. |
 | `clique.textCopyright` | Copyright text to be used, if enabled. |
 | `clique.longLicense` | Use long license text?<br/>_Ignored when documentation tags are used._ |
 | `clique.customLicense` | Use custom license information?<br/>_Applies only when no license is specified in ``package.json``_. |
@@ -42,7 +42,7 @@ This extension contributes the following settings:
 
 ## Examples
 
-### Without Docmentation Tags (Option "Use Tags" is not selected)
+### Without Documentation Tags (Option "Use Tags" is not selected)
 
 #### A.1
 | Setting | Value |
@@ -83,8 +83,8 @@ This extension contributes the following settings:
 | Setting | Value |
 | --- | --- |
 | `clique.commentOpen` | `/**` |
-| `clique.commentBody` | ` *` (Notice a space before asterix) |
-| `clique.commentClose` | ` */` (Notice a space before asterix) |
+| `clique.commentBody` | ` *` (Notice a space before asterisk) |
+| `clique.commentClose` | ` */` (Notice a space before asterisk) |
 
 ```ts
 /**
@@ -135,7 +135,7 @@ This extension contributes the following settings:
 //
 ```
 
-### With Docmentation Tags (Option "Use Tags" is selected)
+### With Documentation Tags (Option "Use Tags" is selected)
 
 #### B.1
 | Setting | Value |
