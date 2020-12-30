@@ -12,8 +12,8 @@
 		"url": "https://github.com/spremi"
 	},
 	"repository": {
-		"type" : "git",
-		"url" : "https://github.com/spremi/clique"
+		"type": "git",
+		"url": "https://github.com/spremi/clique"
 	},
 	"engines": {
 		"vscode": "^1.33.0"
@@ -22,9 +22,14 @@
 		"header",
 		"file-header",
 		"SPDX",
-		"copyright",
 		"license",
-		"copyright"
+		"copyright",
+		"multi-language",
+		"typescript",
+		"javascript",
+		"C",
+		"C++",
+		"Python"
 	],
 	"categories": [
 		"Other"
