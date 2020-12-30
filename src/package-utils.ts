@@ -22,7 +22,7 @@ const WARN_PROJECT = 'clique: Project name is missing in "package.json".';
 const WARN_AUTHOR = 'clique: Author information is missing in "package.json".';
 
 /**
- * Read contents of package.json as JSON.
+ * Read contents of package.json or .clique.json (in order of priority) as JSON.
  */
 function readPackageJson(): any {
 	let data = {};
@@ -31,18 +31,27 @@ function readPackageJson(): any {
 		vscode.workspace.workspaceFolders.length > 0) {
 		const PackagePath = vscode.workspace.workspaceFolders[0].uri.fsPath;
 		const PackageFile = path.join(PackagePath, 'package.json');
+		const CliqueFile = path.join(PackagePath, '.clique.json');
+
+		let pkg: string = '';
 
 		if (fs.existsSync(PackageFile)) {
-			const pkg = fs.readFileSync(PackageFile, 'utf-8');
+			pkg = fs.readFileSync(PackageFile, 'utf-8');
+		}
 
-			try {
-				data = JSON.parse(pkg);
-			} catch (e) {
-				vscode.window.showWarningMessage(WARN_PACKAGE_PARSE);
-				return;
-			}
-		} else {
+		if (pkg === '' && fs.existsSync(CliqueFile)) {
+			pkg = fs.readFileSync(CliqueFile, 'utf-8');
+		}
+
+		if (pkg === '') {
 			vscode.window.showWarningMessage(WARN_NO_PACKAGE);
+			return;
+		}
+
+		try {
+			data = JSON.parse(pkg);
+		} catch (e) {
+			vscode.window.showWarningMessage(WARN_PACKAGE_PARSE);
 			return;
 		}
 	} else {
