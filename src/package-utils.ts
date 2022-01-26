@@ -12,6 +12,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { IPackageInfo } from './interfaces';
+import { LicenseIdentifiers } from './licenses';
 import { OtherTokens } from './tokens';
 
 const JSON_PACKAGE = 'package.json';
@@ -24,6 +25,8 @@ const WARN_CLIQUE_PARSE = `clique: Unable to parse file "${JSON_CLIQUE}".`;
 
 const WARN_PROJECT = 'clique: Project name is missing in "package.json".';
 const WARN_AUTHOR = 'clique: Author information is missing in "package.json".';
+
+const WARN_LICENSE = 'clique: Unrecognized license. Only OSI supported licenses are supported.';
 
 /**
  * Read contents of package.json or .clique.json (in order of priority) as JSON.
@@ -121,7 +124,12 @@ export function getPackageInfo(): IPackageInfo | undefined {
 	}
 
 	if (pkgJson.hasOwnProperty('license') && pkgJson.license) {
-		license = pkgJson.license;
+		if (LicenseIdentifiers.find(x => x === pkgJson.license)) {
+			license = pkgJson.license;
+		} else {
+			vscode.window.showWarningMessage(WARN_LICENSE);
+			return;
+		}
 	} else {
 		license = OtherTokens.Unlicensed;
 	}
