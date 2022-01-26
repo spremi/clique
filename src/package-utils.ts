@@ -14,9 +14,13 @@ import * as vscode from 'vscode';
 import { IPackageInfo } from './interfaces';
 import { OtherTokens } from './tokens';
 
+const JSON_PACKAGE = 'package.json';
+const JSON_CLIQUE = '.clique.json';
+
 const WARN_NO_WORKSPACE = 'clique: No active workspace!';
-const WARN_NO_PACKAGE = 'clique: File "package.json" not found!';
-const WARN_PACKAGE_PARSE = 'clique: Unable to parse file "package.json".';
+const WARN_NO_PACKAGE = 'clique: Neither "package.json" nor ".clique.json" found!';
+const WARN_PACKAGE_PARSE = `clique: Unable to parse file "${JSON_PACKAGE}".`;
+const WARN_CLIQUE_PARSE = `clique: Unable to parse file "${JSON_CLIQUE}".`;
 
 const WARN_PROJECT = 'clique: Project name is missing in "package.json".';
 const WARN_AUTHOR = 'clique: Author information is missing in "package.json".';
@@ -30,16 +34,18 @@ function readPackageJson(): any {
 	if (vscode.workspace.workspaceFolders &&
 		vscode.workspace.workspaceFolders.length > 0) {
 		const PackagePath = vscode.workspace.workspaceFolders[0].uri.fsPath;
-		const PackageFile = path.join(PackagePath, 'package.json');
-		const CliqueFile = path.join(PackagePath, '.clique.json');
+		const PackageFile = path.join(PackagePath, JSON_PACKAGE);
+		const CliqueFile = path.join(PackagePath, JSON_CLIQUE);
 
 		let pkg: string = '';
+		let usePkgJson = true;
 
 		if (fs.existsSync(PackageFile)) {
 			pkg = fs.readFileSync(PackageFile, 'utf-8');
 		}
 
 		if (pkg === '' && fs.existsSync(CliqueFile)) {
+			usePkgJson = false;
 			pkg = fs.readFileSync(CliqueFile, 'utf-8');
 		}
 
@@ -51,7 +57,11 @@ function readPackageJson(): any {
 		try {
 			data = JSON.parse(pkg);
 		} catch (e) {
-			vscode.window.showWarningMessage(WARN_PACKAGE_PARSE);
+			if (usePkgJson) {
+				vscode.window.showWarningMessage(WARN_PACKAGE_PARSE);
+			} else {
+				vscode.window.showWarningMessage(WARN_CLIQUE_PARSE);
+			}
 			return;
 		}
 	} else {
