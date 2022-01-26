@@ -51,6 +51,7 @@ This extension contributes the following settings:
 | `clique.tagProject` | Documentation tag to be used for project name. |
 | `clique.tagLicense` | Documentation tag to be used for license name. |
 | `clique.textCopyright` | Copyright text to be used, if enabled. |
+| `clique.showLicenseUrl` | Show URL for license specified in ``package.json``?<br/>_Supports OSI approved licenses only._ |
 | `clique.longLicense` | Use long license text?<br/>_Ignored when documentation tags are used._ |
 | `clique.customLicense` | Use custom license information?<br/>_Applies only when no license is specified in ``package.json``_. |
 | `clique.customLicenseId` | Short identifier for custom license. |
@@ -217,6 +218,78 @@ This extension contributes the following settings:
 #
 ```
 
+### With License URL (Option "Show license URL" is selected)
+
+#### C.1
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.useTags` | Selected |
+| `clique.showLicenseUrl` | Selected |
+| `clique.includeCopyright` | Selected |
+
+```ts
+//
+// @project     my-project
+//
+// @author      Smart Developer (smart.developer@work.home)
+//
+// @license     BSD-3-Clause
+//              (https://spdx.org/licenses/BSD-3-Clause.html)
+//
+// Copyright (c) 2019. Smart Company Incorporated.
+//
+```
+
+#### C.2
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.useTags` | Not selected |
+| `clique.showLicenseUrl` | Selected |
+| `clique.includeCopyright` | Selected |
+
+```ts
+//
+// [my-project]
+//
+// Smart Developer (smart.developer@work.home)
+//
+// BSD-3-Clause License
+// (https://spdx.org/licenses/BSD-3-Clause.html)
+//
+// Copyright (c) 2019. Smart Company Incorporated.
+//
+```
+
+#### C.3
+| Setting | Value |
+| --- | --- |
+| `clique.commentOpen` | `//` |
+| `clique.commentBody` | `//` |
+| `clique.commentClose` | `//` |
+| `clique.useTags` | Not selected |
+| `clique.longLicense` | Selected |
+| `clique.showLicenseUrl` | Selected |
+| `clique.includeCopyright` | Selected |
+
+```ts
+//
+// [my-project]
+//
+// Smart Developer (smart.developer@work.home)
+//
+// Available under terms of the BSD-3-Clause license.
+// (https://spdx.org/licenses/BSD-3-Clause.html)
+//
+// Copyright (c) 2019. Smart Company Incorporated.
+//
+```
+
 ## Known Issues
 
 1. The generated header varies with change in extension settings.
@@ -227,7 +300,6 @@ This extension contributes the following settings:
 
 ## Planned features
 
-* Include URL to SPDX licenses.
 * Wrap license in custom text - when documentation tags aren't used.
 
 ## Release Notes
