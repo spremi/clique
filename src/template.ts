@@ -67,6 +67,7 @@ export class HeaderTemplate {
 	 */
 	public static readonly License: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.License} License`,
+		`${HeaderTokens.Body}${HeaderTokens.InitSpace}(${HeaderTokens.LicenseUrl})`,
 	];
 
 	/**
@@ -75,6 +76,8 @@ export class HeaderTemplate {
 	public static readonly LicenseTag: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.TagLicense}` +
 			`${HeaderTokens.Space}${HeaderTokens.License}`,
+		`${HeaderTokens.Body}${HeaderTokens.InitSpace}${HeaderTokens.ContSpace}` +
+			`(${HeaderTokens.LicenseUrl})`,
 	];
 
 	/**
@@ -83,6 +86,7 @@ export class HeaderTemplate {
 	public static readonly LicenseText: string[] = [
 		`${HeaderTokens.Body}${HeaderTokens.InitSpace}` +
 			`Available under terms of the ${HeaderTokens.License} license.`,
+		`${HeaderTokens.Body}${HeaderTokens.InitSpace}(${HeaderTokens.LicenseUrl})`,
 	];
 
 	/**

@@ -19,6 +19,7 @@ export class HeaderTokens {
 	public static readonly Author = '%AUTHOR%';
 	public static readonly Project = '%PROJECT%';
 	public static readonly License = '%LICENSE%';
+	public static readonly LicenseUrl = '%LICENSEURL%';
 	public static readonly Copyright = '%COPY%';
 
 	public static readonly TagAuthor = '%TAGAUTHOR%';
@@ -28,6 +29,7 @@ export class HeaderTokens {
 
 	public static readonly Space = '%SP%';
 	public static readonly InitSpace = '%ISP%';
+	public static readonly ContSpace = '%CSP%';
 
 	public static readonly Year = '%YYYY%';
 }
@@ -47,6 +49,7 @@ export class ConfigTokens {
 	public static readonly TagLicense = 'tagLicense';
 
 	public static readonly LongLicense = 'longLicense';
+	public static readonly ShowLicenseUrl = 'showLicenseUrl';
 
 	public static readonly IncludeCopyright = 'includeCopyright';
 	public static readonly TextCopyright = 'textCopyright';

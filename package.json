@@ -126,6 +126,12 @@
 						"default": "Licensed under CUSTOM terms described in the file LICENSE.TXT.",
 						"description": "One line text for custom license.",
 						"scope": "window"
+					},
+					"clique.showLicenseUrl": {
+						"type": "boolean",
+						"default": false,
+						"description": "Show license URL? (OSI approved licenses only.)",
+						"scope": "window"
 					}
 				}
 			}

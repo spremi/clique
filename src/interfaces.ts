@@ -76,6 +76,8 @@ export interface ICustomLicenseCfg {
 export interface ILicenseCfg {
 	/** Use longish license text? */
 	useLong: boolean;
+	/** Show license URL? */
+	showUrl: boolean;
 	/** Custom license information. */
 	custom: ICustomLicenseCfg | undefined;
 }

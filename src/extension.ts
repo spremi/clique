@@ -15,6 +15,7 @@ import { getExtensionCfg } from './config-utils';
 import { getPackageInfo } from './package-utils';
 import { HeaderTemplate } from './template';
 import { HeaderTokens, OtherTokens } from './tokens';
+import { getLicenseUrl } from './licenses';
 
 const REGEX_HEADER_OPEN = new RegExp(`${HeaderTokens.Open}`, 'g');
 const REGEX_HEADER_BODY = new RegExp(`${HeaderTokens.Body}`, 'g');
@@ -27,10 +28,12 @@ const REGEX_LICENSE_TAG = new RegExp(`${HeaderTokens.TagLicense}${HeaderTokens.S
 const REGEX_PROJECT = new RegExp(`${HeaderTokens.Project}`, 'g');
 const REGEX_AUTHOR = new RegExp(`${HeaderTokens.Author}`, 'g');
 const REGEX_LICENSE = new RegExp(`${HeaderTokens.License}`, 'g');
+const REGEX_LICENSE_URL = new RegExp(`${HeaderTokens.LicenseUrl}`, 'g');
 
 const REGEX_COPY = new RegExp(`${HeaderTokens.Copyright}`, 'g');
 
 const REGEX_INIT_SPACES = new RegExp(`${HeaderTokens.InitSpace}`, 'g');
+const REGEX_CONT_SPACES = new RegExp(`${HeaderTokens.ContSpace}`, 'g');
 
 const REGEX_YEAR = new RegExp(`${HeaderTokens.Year}`, 'g');
 
@@ -118,6 +121,13 @@ function getHeaderTemplate(cfg: IExtensionCfg, license: string, eol: string): st
 
 	tpl = tpl.concat(HeaderTemplate.Close);
 
+	if (!cfg.license.showUrl) {
+		//
+		// Remove placeholder for license url
+		//
+		tpl = tpl.filter(t => !t.includes(HeaderTokens.LicenseUrl));
+	}
+
 	return tpl.join(eol) + eol + eol;
 }
 
@@ -140,21 +150,27 @@ function getHeaderText(tpl: string, cfg: IExtensionCfg, pkg: IPackageInfo): stri
 	header = header.replace(REGEX_HEADER_CLOSE, cfg.comment.close);
 
 	if (cfg.tags.use) {
-	  //
-	  // Calculate the column where the values start.
-	  //
-	  const TagStop: number = Math.floor((cfg.comment.body.length + cfg.comment.initSpaces + maxTagLength(cfg.tags) + 8) / 4) * 4;
+		//
+		// Calculate the column where the values start.
+		//
+		const TagStop: number = Math.floor(
+			(cfg.comment.body.length +
+				cfg.comment.initSpaces +
+				maxTagLength(cfg.tags) + 8) / 4) * 4;
 
-	  const TagLength = TagStop - cfg.comment.body.length - cfg.comment.initSpaces;
+		const TagLength = TagStop - cfg.comment.body.length - cfg.comment.initSpaces;
 
-	  let delta = TagLength - cfg.tags.project.length;
+		let delta = TagLength - cfg.tags.project.length;
 		header = header.replace(REGEX_PROJECT_TAG, cfg.tags.project + spaceStr(delta));
 
-	  delta = TagLength - cfg.tags.author.length;
+		delta = TagLength - cfg.tags.author.length;
 		header = header.replace(REGEX_AUTHOR_TAG, cfg.tags.author + spaceStr(delta));
 
-	  delta = TagLength - cfg.tags.license.length;
+		delta = TagLength - cfg.tags.license.length;
 		header = header.replace(REGEX_LICENSE_TAG, cfg.tags.license + spaceStr(delta));
+
+		delta = TagLength;
+		header = header.replace(REGEX_CONT_SPACES, spaceStr(delta));
 	}
 
 	if (cfg.copy.use) {
@@ -164,22 +180,21 @@ function getHeaderText(tpl: string, cfg: IExtensionCfg, pkg: IPackageInfo): stri
 	header = header.replace(REGEX_PROJECT, pkg.project);
 	header = header.replace(REGEX_AUTHOR, pkg.author);
 
-	if (cfg.tags.use) {
-		if ((pkg.license === OtherTokens.Unlicensed) && cfg.license.custom.use) {
-			header = header.replace(REGEX_LICENSE, cfg.license.custom.id);
+	if ((pkg.license === OtherTokens.Unlicensed) && cfg.license.custom.use) {
+		//
+		// Custom license
+		//
+		if (cfg.license.useLong) {
+			header = header.replace(REGEX_LICENSE, cfg.license.custom.text);
 		} else {
-			header = header.replace(REGEX_LICENSE, pkg.license);
+			header = header.replace(REGEX_LICENSE, cfg.license.custom.id);
 		}
 	} else {
-		if ((pkg.license === OtherTokens.Unlicensed) && cfg.license.custom.use) {
-			if (cfg.license.useLong) {
-				header = header.replace(REGEX_LICENSE, cfg.license.custom.text);
-			} else {
-				header = header.replace(REGEX_LICENSE, cfg.license.custom.id);
-			}
-		} else {
-			header = header.replace(REGEX_LICENSE, pkg.license);
-		}
+		header = header.replace(REGEX_LICENSE, pkg.license);
+	}
+
+	if (cfg.license.showUrl) {
+		header = header.replace(REGEX_LICENSE_URL, getLicenseUrl(pkg.license));
 	}
 
 	header = header.replace(REGEX_INIT_SPACES, spaceStr(cfg.comment.initSpaces));
