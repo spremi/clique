@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.0.6] - 2022-01-26
+### Changed
+- Check if the license is OSI approved.
+- Add the URL to OSI approved license, if configured.
+
 ## [0.0.5] - 2020-12-30
 ### Changed
 - Enable extension to be used in workspaces of other languages viz. C/C++,
