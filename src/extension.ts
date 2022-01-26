@@ -77,7 +77,7 @@ function getHeaderTemplate(cfg: IExtensionCfg, license: string, eol: string): st
 
 	tpl = HeaderTemplate.Open.concat([]);
 
-	if (!cfg.copy || !cfg.license || !cfg.license.custom ||!cfg.tags) {
+	if (!cfg.copy || !cfg.license || !cfg.license.custom || !cfg.tags) {
 		return;
 	}
 
@@ -96,7 +96,7 @@ function getHeaderTemplate(cfg: IExtensionCfg, license: string, eol: string): st
 				} else {
 					tpl = tpl.concat(HeaderTemplate.License);
 				}
-		} else {
+			} else {
 				if (cfg.license.useLong) {
 					tpl = tpl.concat(HeaderTemplate.NoLicenseText);
 				} else {
@@ -189,14 +189,14 @@ function getHeaderText(tpl: string, cfg: IExtensionCfg, pkg: IPackageInfo): stri
 	header = header.replace(REGEX_YEAR, now.getFullYear().toString());
 
 	return header;
-  }
+}
 
 /**
  * Insert header into current file.
  */
 function insertHeader(editor: vscode.TextEditor, header: string) {
 	editor.edit((editBuilder) => {
-		editBuilder.insert(new vscode.Position(0,0), header);
+		editBuilder.insert(new vscode.Position(0, 0), header);
 	});
 }
 
@@ -250,4 +250,4 @@ export function activate(context: vscode.ExtensionContext) {
 /**
  * Deactivate the extension.
  */
-export function deactivate() {}
+export function deactivate() { }
